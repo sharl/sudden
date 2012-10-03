@@ -1,0 +1,16 @@
+#!/usr/bin/env perl
+# -*- coding: utf-8 -*-
+
+use strict;
+use warnings;
+
+my $message = join(' ', @ARGV);
+die unless $message;
+
+utf8::decode($message);
+my $len = length($message);
+utf8::encode($message);
+
+print "＿" . ("人" x ($len + 2)) . "＿\n" .
+    "＞　" . $message . "　＜\n" .
+    "￣^" . ("Y^" x $len) . "￣\n";
