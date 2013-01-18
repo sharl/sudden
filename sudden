@@ -3,14 +3,15 @@
 
 use strict;
 use warnings;
+use Text::VisualWidth::UTF8;
 
 my $message = join(' ', @ARGV);
 die unless $message;
 
 utf8::decode($message);
-my $len = length($message);
+my $len = (Text::VisualWidth::UTF8::width($message) + 2) / 2;
 utf8::encode($message);
 
-print "＿" . ("人" x ($len + 2)) . "＿\n" .
-    "＞　" . $message . "　＜\n" .
-    "￣^" . ("Y^" x $len) . "￣\n";
+print '＿' . ('人' x $len) . "＿\n" .
+    '＞ ' . $message . " ＜\n" .
+    '￣' . ('^Y' x ($len - 1)) . "^￣\n";
